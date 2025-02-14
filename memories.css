@@ -57,7 +57,7 @@ body {
     height: 100%;
     overflow: hidden;
     background-repeat: no-repeat;
-	background-size: var(--gallery-width) var(--gallery-height);
+	background-size: cover;
 }
 
 .top, .overlay-top {
