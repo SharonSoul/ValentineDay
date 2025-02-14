@@ -3,7 +3,7 @@ const imageNames = [
     "IMG_1866.jpg", "IMG_4809.jpg", "IMG_5952.jpg", "IMG_6501.jpg", "IMG_6815.jpg",
     "IMG_7327.jpg", "IMG_7959.jpg", "IMG_7974.jpg", "IMG_8162.jpg", "IMG_8205.jpg",
     "IMG_8468.jpg", "IMG_8596.jpg", "IMG_8951.jpg", "IMG_8968.jpg", "IMG_8982.jpg",
-    "IMG_8986.jpg", "IMG_9019.jpg", "IMG_9177.jpg", "IMG_9918.jpg", "IMG_9930.jpg"
+    "IMG_8986.jpg", "IMG_9019.jpg", "IMG_9177.jpg", "IMG_9918.jpg", "IMG_9930.jpg" 
 ];
 
 // Function to shuffle images randomly
