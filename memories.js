@@ -6,28 +6,22 @@ const imageNames = [
     "IMG_8986.jpg", "IMG_9019.jpg", "IMG_9177.jpg", "IMG_9918.jpg", "IMG_9930.jpg"
 ];
 
-// Function to shuffle images randomly
+// Shuffle images
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Shuffle image order
 const shuffledImages = shuffleArray(imageNames);
 
-// Create images array for gallery
+// Corrected URL path for Vercel
 const images = shuffledImages.map(name => ({
-    title: name.replace(/_/g, " ").replace(".jpg", ""), // Convert filename to a readable title
-    url: `/img/${name}`
-
+    title: name.replace(/_/g, " ").replace(".jpg", ""), 
+    url: `/${name}` // Images are served from the public folder directly
 }));
 
 const FLIP_SPEED = 750;
-let flipTiming = {
-    duration: FLIP_SPEED,
-    iterations: 1
-};
+let flipTiming = { duration: FLIP_SPEED, iterations: 1 };
 
-// Flip animations
 let flipAnimationTop = [
     { transform: "rotateX(0)" },
     { transform: "rotateX(-90deg)" },
@@ -78,7 +72,14 @@ function updateGallery(currentIndex, isReverse = false) {
 }
 
 function setActiveImage(el) {
-    el.style.backgroundImage = `url("${images[currentIndex].url}")`;
+    const img = new Image();
+    img.src = images[currentIndex].url;
+    img.onload = () => {
+        el.style.backgroundImage = `url("${images[currentIndex].url}")`;
+    };
+    img.onerror = () => {
+        console.error(`Image not found: ${images[currentIndex].url}`);
+    };
 }
 
 function setImageTitle() {
@@ -97,6 +98,7 @@ document.querySelectorAll("[data-gallery-nav]").forEach((btn) => {
     btn.addEventListener("click", () => updateIndex(parseInt(btn.dataset.galleryNav)));
 });
 
+// Ensure the first image loads
 function defineFirstImg() {
     flipUnite.forEach((el) => {
         setActiveImage(el);
