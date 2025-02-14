@@ -1,32 +1,23 @@
-const imageNames = [
-    "IMG_0241.jpg", "IMG_1041.jpg", "IMG_1283.jpg", "IMG_1286.jpg", "IMG_1380.jpg",
-    "IMG_1866.jpg", "IMG_4809.jpg", "IMG_5952.jpg", "IMG_6501.jpg", "IMG_6815.jpg",
-    "IMG_7327.jpg", "IMG_7959.jpg", "IMG_7974.jpg", "IMG_8162.jpg", "IMG_8205.jpg",
-    "IMG_8468.jpg", "IMG_8596.jpg", "IMG_8951.jpg", "IMG_8968.jpg", "IMG_8982.jpg",
-    "IMG_8986.jpg", "IMG_9019.jpg", "IMG_9177.jpg", "IMG_9918.jpg", "IMG_9930.jpg" 
-];
+// Get image paths from HTML
+const imageElements = document.querySelectorAll("#image-container div");
+const imageNames = Array.from(imageElements).map(el => el.getAttribute("data-image"));
 
 // Function to shuffle images randomly
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Shuffle image order
+// Shuffle images
 const shuffledImages = shuffleArray(imageNames);
 
 // Create images array for gallery
-const images = shuffledImages.map(name => ({
-    title: name.replace(/_/g, " ").replace(".jpg", ""), // Convert filename to a readable title
-    url: `./memories/images/${name}`
-
-
+const images = shuffledImages.map(url => ({
+    title: url.split("/").pop().replace(/_/g, " ").replace(".jpg", ""),
+    url: url
 }));
 
 const FLIP_SPEED = 750;
-let flipTiming = {
-    duration: FLIP_SPEED,
-    iterations: 1
-};
+let flipTiming = { duration: FLIP_SPEED, iterations: 1 };
 
 // Flip animations
 let flipAnimationTop = [
