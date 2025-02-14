@@ -17,7 +17,7 @@ const shuffledImages = shuffleArray(imageNames);
 // Create images array for gallery
 const images = shuffledImages.map(name => ({
     title: name.replace(/_/g, " ").replace(".jpg", ""), // Convert filename to a readable title
-    url: `img/${name}`
+    url: `public/img/${name}`
 }));
 
 const FLIP_SPEED = 750;
